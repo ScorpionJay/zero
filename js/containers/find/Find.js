@@ -1,0 +1,48 @@
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  View,
+  Text,
+  ScrollView
+} from 'react-native';
+
+import ToolBar from '../common/ToolBar'
+// import CarouselCompont from '../../common/RNCarousel'
+// import ListCompontent from './ListCompontent'
+
+import { connect } from 'react-redux'
+import { fetchList,fetchListItem } from '../../actions/home'
+
+class App extends Component {
+
+  componentDidMount(){
+    const { dispatch } = this.props
+    dispatch(fetchList())
+  }
+  
+  render() {
+    return (
+      <View style={styles.container}>
+        <ToolBar navigator={this.props.navigator} route={this.props.route}/>
+        <Text>Find</Text>
+
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
+
+function map(state) {
+  return {
+    data: state.home.fetchList
+  }
+}
+
+export default connect(map)(App)
