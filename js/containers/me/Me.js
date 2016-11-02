@@ -4,23 +4,22 @@ import {
   View,
   Text,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  ToastAndroid
 } from 'react-native';
 
 import ToolBar from '../common/ToolBar'
-// import CarouselCompont from '../../common/RNCarousel'
-// import ListCompontent from './ListCompontent'
-
+import Icon from 'react-native-vector-icons/FontAwesome'
 import { connect } from 'react-redux'
 import { accountAPI } from '../../actions/account'
 
-class App extends Component {
+class Me extends Component {
 
   componentDidMount(){
     const { dispatch } = this.props
 
     if( this.props.login ){
-      // 已经登录 获取用户信息
+      // logined get user's info
       dispatch(accountAPI(this.props.login))
     }
     console.log('loginggg',this.props.login)
@@ -33,20 +32,18 @@ class App extends Component {
         this.props.navigator.push({
               id: 'login',
               title: '登录'
-              // params: {
-              //   getUser: function(token){
-              //     console.log('me' , token);
-              //     //dispatch(accountAPI(token))
-              //   }
-              // }
         })
+    }else {
+      ToastAndroid.show('link to account info page', ToastAndroid.SHORT)
     }
-    
-    // navigator.replace({
-    //       id: 'login',
-    //       title: '登录'
+  }
+
+  album(){
+    ToastAndroid.show('开发中', ToastAndroid.SHORT)
+    // this.props.navigator.push({
+    //           id: 'setting',
+    //           title: '设置'
     //     })
-      
   }
 
   setting(){
@@ -56,28 +53,68 @@ class App extends Component {
         })
   }
 
+  collect(){
+    ToastAndroid.show('开发中', ToastAndroid.SHORT)
+    // this.props.navigator.push({
+    //           id: 'setting',
+    //           title: '设置'
+    //     })
+  }
+
   render() {
     const { account } = this.props
-    let name = ''
+    let name = '未登录'
     if(account){
       name = account.name
     }
     return (
-      <TouchableOpacity style={styles.container} onPress={this.hanlder.bind(this)}>
+      <View>
         <ToolBar navigator={this.props.navigator} route={this.props.route}/>
-        <Text>Me</Text>
-        <Text>{name}</Text>
-        <TouchableOpacity style={styles.container} onPress={this.setting.bind(this)}>
-          <Text>设置</Text>
+
+        <TouchableOpacity  style={ [styles.item,styles.account] } onPress={this.hanlder.bind(this)}>
+          <Text>{name}</Text>
+          <Icon name="angle-right" size={22} color="#aaa" />
         </TouchableOpacity>
-      </TouchableOpacity>
+
+        <TouchableOpacity  style={ styles.item } onPress={this.album.bind(this)}>
+            <Text style={ styles.ItemText }><Icon name="photo" size={17} color="#FC8202" />  相册</Text>
+            <Icon name="angle-right" size={22} color="#aaa" />
+        </TouchableOpacity>
+
+        <TouchableOpacity  style={ styles.item } onPress={this.collect.bind(this)}>
+            <Text style={ styles.ItemText }><Icon name="cube" size={17} color="#14C083" />  收藏</Text>
+            <Icon name="angle-right" size={22} color="#aaa" />
+        </TouchableOpacity>
+
+        <TouchableOpacity  style={ styles.item } onPress={this.setting.bind(this)}>
+            <Text style={ styles.ItemText }><Icon name="gear" size={17} color="#10AEFF" />  设置</Text>
+            <Icon name="angle-right" size={22} color="#aaa" />
+        </TouchableOpacity>
+        
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  account: {
+    height:80,
+    alignItems: 'center'
+  },
+  item:{
     flex: 1,
+    height:40,
+    backgroundColor:'#FEFEFE',
+    flexDirection: 'row',
+    paddingTop:10,
+    paddingLeft:15,
+    paddingRight:15,
+    marginTop:15,
+    justifyContent: 'space-between'
+  },
+  ItemText: {
+    color:'#666',
+    fontSize:16,
   },
 });
 
@@ -90,4 +127,4 @@ function map(state) {
   }
 }
 
-export default connect(map)(App)
+export default connect(map)(Me)

@@ -43,7 +43,7 @@ class App extends Component {
   render() {
     return (
       <TouchableOpacity onPress={this.hanlder.bind(this)} style={styles.container} >
-        <Image source={{uri: 'http://odyv5xg88.bkt.clouddn.com/10.jpg'}} style={styles.img} />
+        <Image source={{uri: 'http://odyv5xg88.bkt.clouddn.com/34.jpg'}} style={styles.img} />
       </TouchableOpacity>
     );
   }

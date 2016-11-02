@@ -1,4 +1,4 @@
-const serviceUrl = 'http://192.16.2.28:18080/'
+const serviceUrl = 'http://192.16.2.85:18080/'
 
 export default {
   initTab:'home',

@@ -4,57 +4,22 @@ import {
   View,
   Text,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  ToastAndroid
 } from 'react-native';
 
 import ToolBar from '../common/ToolBar'
-// import CarouselCompont from '../../common/RNCarousel'
-// import ListCompontent from './ListCompontent'
-
 import { connect } from 'react-redux'
-import { logoutAPI } from '../../actions/login'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
-class App extends Component {
+import { logoutAPI} from '../../actions/login'
 
-  componentDidMount(){
-    const { dispatch } = this.props
-
-    // if( this.props.login ){
-    //   // 已经登录 获取用户信息
-    //   dispatch(accountAPI(this.props.login))
-    // }
-    // console.log('loginggg',this.props.login)
-  }
-  
-  hanlder(){
-    const {navigator,login,dispatch} = this.props
-
-    if( !this.props.login ){
-        this.props.navigator.push({
-              id: 'login',
-              // params: {
-              //   getUser: function(token){
-              //     console.log('me' , token);
-              //     //dispatch(accountAPI(token))
-              //   }
-              // }
-        })
-    }
-    
-    // navigator.replace({
-    //       id: 'login',
-    //       title: '登录'
-    //     })
-      
-  }
+class Setting extends Component {
 
   logout(){
     const { dispatch } = this.props
     dispatch(logoutAPI())
     this.props.navigator.pop()
-    // this.props.navigator.push({
-    //           id: 'setting'
-    //     })
   }
 
   about(){
@@ -64,35 +29,69 @@ class App extends Component {
           })
   }
 
+  suggest(){
+     ToastAndroid.show('开发中', ToastAndroid.SHORT)
+  }
+
   render() {
-
-
-
-
     return (
-      <TouchableOpacity  onPress={this.hanlder.bind(this)}>
-        <ToolBar navigator={this.props.navigator} route={this.props.route}/>
-        <TouchableOpacity  onPress={this.about.bind(this)}>
-          <Text>关于</Text>
-        </TouchableOpacity>
-        {
-          this.props.login == null ? (null):(
-           <TouchableOpacity  onPress={this.logout.bind(this)}>
-            <Text>退出</Text>
-            </TouchableOpacity>
-            )
-          
-        }
-       
-      </TouchableOpacity>
+      <ScrollView> 
+          <ToolBar navigator={this.props.navigator} route={this.props.route}/>
+
+          <TouchableOpacity  style={ styles.item } onPress={this.about.bind(this)}>
+            <Text style={ styles.ItemText }><Icon name="map" size={17} color="#00A2FF" />  新手指引</Text>
+            <Icon name="angle-right" size={22} color="#aaa" />
+          </TouchableOpacity>
+
+          <TouchableOpacity  style={ styles.item } onPress={this.about.bind(this)}>
+            <Text style={ styles.ItemText }><Icon name="user" size={17} color="#FF7460" />  关于我们</Text>
+            <Icon name="angle-right" size={22} color="#aaa" />
+          </TouchableOpacity>
+
+          <TouchableOpacity  style={ styles.item } onPress={this.suggest.bind(this)}>
+            <Text style={ styles.ItemText }><Icon name="envelope" size={17} color="#F4A51D" />  意见反馈</Text>
+            <Icon name="angle-right" size={22} color="#aaa" />
+          </TouchableOpacity>
+          {
+            this.props.login == null ? (null):(
+             <TouchableOpacity  style={ styles.logout } onPress={this.logout.bind(this)}>
+              <Text style={ styles.logoutText } >退出</Text>
+              </TouchableOpacity>
+              )
+          }
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  item:{
     flex: 1,
+    height:40,
+    backgroundColor:'#FEFEFE',
+    flexDirection: 'row',
+    paddingTop:10,
+    paddingLeft:15,
+    paddingRight:15,
+    marginTop:15,
+    justifyContent: 'space-between'
   },
+  ItemText: {
+    color:'#666',
+    fontSize:16,
+  },
+  logout: {
+    backgroundColor:'#FEFEFE',
+    height:40,
+    marginTop:15,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  logoutText: {
+    color:'#666',
+    fontSize:16,
+  }
 });
 
 
@@ -102,4 +101,4 @@ function map(state) {
   }
 }
 
-export default connect(map)(App)
+export default connect(map)(Setting)

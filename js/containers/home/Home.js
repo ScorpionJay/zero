@@ -16,31 +16,58 @@ import HomeCarouse from './HomeCarouse'
 import { connect } from 'react-redux'
 import { fetchList,fetchListItem } from '../../actions/home'
 
+var Dimensions = require('Dimensions');
+var {width, height} = Dimensions.get('window');
+
+
 class App extends Component {
+
+
+  constructor(props) {
+    super(props);
+  
+    this.state = {};
+    console.log(width,height);
+  }
 
   componentDidMount(){
     const { dispatch } = this.props
     dispatch(fetchList())
   }
 
-  _handle(){
+  link(obj){
+    console.log(obj)
     this.props.navigator.push({
-       title:'音乐',
-       id:'music'
+       title:obj.name,
+       id:obj.link
     })
   }
   
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <ToolBar navigator={this.props.navigator} route={this.props.route}/>
         <HomeCarouse style={{height:'200px'}} navigator={this.props.navigator} route={this.props.route}/>
-        <View style={{flex: 1,marginTop:10,padding:10,flexDirection: 'row',flexWrap:'wrap'}}>
+        <View style={ styles.nav }>
         {
-          this.props.data.map( item => <TouchableHighlight style={{backgroundColor:'red',width:80,height:80,borderRadius:80,margin:10,justifyContent: 'center',alignItems: 'center',}} onPress={ this._handle.bind(this)}><Text>{item.name}</Text></TouchableHighlight> )
+          this.props.data.map( item => {
+
+            var s = {
+              backgroundColor: item.color,
+              width:(width-20)/5 - 10,
+              height:(width-20)/5 - 10,
+              borderRadius:(width-20)/5 - 10,
+              margin:5,
+              marginTop:15,
+              padding:10
+            }
+
+
+          return  <TouchableHighlight style={[s,styles.item]} onPress={ this.link.bind(this,item)}><Text style={{fontSize:16,color:'#fff'}}>{item.name}</Text></TouchableHighlight> 
+          })
         }
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -48,6 +75,12 @@ class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  nav: {
+    flex: 1,marginTop:20,padding:10,flexDirection: 'row',flexWrap:'wrap',justifyContent: 'center',
+  },
+  item: {
+   justifyContent: 'center',alignItems: 'center',
   }
 });
 

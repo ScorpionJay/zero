@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <View style={styles.container}>
         <ToolBar navigator={this.props.navigator} route={this.props.route}/>
-        <Text>Find</Text>
+        <Text>todo</Text>
 
       </View>
     );
