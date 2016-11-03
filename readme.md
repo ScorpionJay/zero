@@ -11,11 +11,16 @@
 
 - react-native run-android
 
+rnpm link
+
 ## Package
 
 cd android
 
 gradlew assembleRelease
+
+
+
 
 
 

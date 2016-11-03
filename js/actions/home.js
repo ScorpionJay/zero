@@ -26,12 +26,12 @@ export function fetchList(){
 	    		{name:'新闻',color:'#7F30F1',link:'news'},
 	    		{name:'图片',color:'#F63B71',link:'picture'},
 	    		{name:'足球',color:'#3dbcf5',link:'football'},
-	    		{name:'博客',color:'#28B2F3',link:'blog'},
+	    		{name:'博客',color:'#de533a',link:'blog'},
 	    		{name:'交通',color:'#E32218',link:'transform'},
 	    		{name:'天气',color:'#2EC6B9',link:'weather'},
 	    		{name:'上海',color:'#EB453F',link:'shanghai'},
 	    		{name:'健身',color:'#ED8F39',link:'fitness'},
-	    		{name:'...',color:'#de533a',link:'music'}
+	    		{name:'...',color:'#28B2F3',link:'music'}
 	    	]
 
 	     	dispatch(addTodo(json))

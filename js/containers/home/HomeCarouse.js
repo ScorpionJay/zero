@@ -39,7 +39,7 @@ var carouselTest = React.createClass({
   render: function() {
     return (
       <View   onLayout={this._onLayoutDidChange} >
-        <Carousel delay={2000} style={this.state.size} >
+        <Carousel delay={9000} style={this.state.size} bullets={true} >
             <TouchableHighlight onPress={this._handle.bind(this,'http://scorpionjay.github.io/ONE')} >
               <Image source={{uri: 'http://odyv5xg88.bkt.clouddn.com/1.jpg'}} style={this.state.size} />
             </TouchableHighlight>

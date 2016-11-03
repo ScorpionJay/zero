@@ -2,6 +2,7 @@ import {LOGIN,LOGOUT} from './types'
 import Config from '../Config'
 import { accountAPI,account } from './account'
 const Alert = require('Alert');
+const ToastAndroid = require('ToastAndroid');
 
 export function loginAPI(username,password,redirect){
 	return dispatch => { 
@@ -16,34 +17,18 @@ export function loginAPI(username,password,redirect){
         })
         .then(function(json) {
             console.log(json)
+            if(json.code === 1){
+                ToastAndroid.show(json.message, ToastAndroid.SHORT)
+            } 
             if( json.token ){
               dispatch(login(json.token))
-              // Alert.alert(
-              //   `Hi, `,
-              //   'Log out from F8?',
-              //   [
-              //     { text: 'Cancel' },
-              //     { text: 'Log out'},
-              //   ]
-              // );
               dispatch(accountAPI(json.token))
               redirect()
             }
-            //   const token = response.headers.get("Auth-Token");
-            //    if(token){
-	           //     // dispatch(login(user))
-	           //     // 页面跳转
-	           //     // if (redirect) redirect()
-            //    }else{
-            //    	 // dispatch(loginError('帐号或密码错误'))
-            //    	 // dispatch(showMessage('帐号或密码错误'))
-            //    }
-            // }
-
         })
         .catch(function(ex) {
           console.log('parsing failed', ex)
-          // dispatch(showMessage('网络繁忙，请稍候重试！'))
+          ToastAndroid.show('网络繁忙，请稍候重试！', ToastAndroid.SHORT)
         })
 	}
 }

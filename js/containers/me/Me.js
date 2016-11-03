@@ -4,6 +4,7 @@ import {
   View,
   Text,
   ScrollView,
+  Image,
   TouchableOpacity,
   ToastAndroid
 } from 'react-native';
@@ -34,7 +35,10 @@ class Me extends Component {
               title: '登录'
         })
     }else {
-      ToastAndroid.show('link to account info page', ToastAndroid.SHORT)
+      this.props.navigator.push({
+              id: 'account',
+              title: '个人信息'
+        })
     }
   }
 
@@ -71,8 +75,15 @@ class Me extends Component {
       <View>
         <ToolBar navigator={this.props.navigator} route={this.props.route}/>
 
-        <TouchableOpacity  style={ [styles.item,styles.account] } onPress={this.hanlder.bind(this)}>
-          <Text>{name}</Text>
+        <TouchableOpacity  style={ [styles.account] } onPress={this.hanlder.bind(this)}>
+          <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
+            {
+              this.props.account ? 
+              (<Image source={{uri: 'http://odyv5xg88.bkt.clouddn.com/34.jpg'}} style={styles.photo}/>) : (<Image source={require('../images/photo.jpg')} style={styles.photo}/>)
+            }
+            
+            <Text style={{marginLeft:20,fontSize:20}}>{name}</Text>
+          </View>
           <Icon name="angle-right" size={22} color="#aaa" />
         </TouchableOpacity>
 
@@ -98,8 +109,16 @@ class Me extends Component {
 
 const styles = StyleSheet.create({
   account: {
-    height:80,
-    alignItems: 'center'
+    height:90,
+    alignItems: 'center',
+    flex: 1,
+    backgroundColor:'#FEFEFE',
+    flexDirection: 'row',
+    paddingLeft:15,
+    paddingRight:15,
+    marginTop:10,
+    justifyContent: 'space-between',
+    alignItems:'center'
   },
   item:{
     flex: 1,
@@ -116,6 +135,11 @@ const styles = StyleSheet.create({
     color:'#666',
     fontSize:16,
   },
+  photo:{
+    width: 70,
+    height:70,
+    borderRadius:60
+  }
 });
 
 

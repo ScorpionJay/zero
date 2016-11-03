@@ -16,19 +16,30 @@ import { musicRecommendAPI } from '../../actions/music'
 
 class Music extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = { };
+  }
+
   componentDidMount(){
     const { dispatch } = this.props
     dispatch(musicRecommendAPI())
-    console.log('aaa',this.props.data.info)
+    console.log('aaa',this.props.data)
   }
   
   render() {
+    const  { data } = this.props
+    let musics = []
+    if(data.info){
+      musics = data.info
+    }
+
     return (
       <View style={styles.container}>
         <ToolBar navigator={this.props.navigator} route={this.props.route}/>
         <ScrollView>
         {
-          this.props.data.info.map( item => <View style={{padding:10}}><Text style={{fontSize:16}}>{item.songname}</Text><Text style={{fontSize:12}}>{item.singername}</Text></View> )
+          musics.map( item => <View style={{padding:10}}><Text style={{fontSize:16}}>{item.songname}</Text><Text style={{fontSize:12}}>{item.singername}</Text></View> )
         }
         </ScrollView>
       </View>

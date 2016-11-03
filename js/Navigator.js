@@ -9,7 +9,7 @@ import Home from './containers/home/Home'
 // import Detail from './containers/home/Detail'
 import Find from './containers/find/Find'
 import Me from './containers/me/Me'
-// import Account from './containers/me/Account'
+import Account from './containers/me/Account'
 import Setting from './containers/me/Setting'
 import About from './containers/me/About'
 // import Post from './containers/post/Post'
@@ -74,9 +74,9 @@ class ZeroNavigator extends Component {
       case  'music':
             return <Music navigator={navigator} route={route}/>
             break;
-      // case  'account':
-      //       return <Account navigator={navigator} route={route}/>
-      //       break;
+      case  'account':
+            return <Account navigator={navigator} route={route}/>
+            break;
       case  'about':
             return <About navigator={navigator} route={route}/>
             break;
