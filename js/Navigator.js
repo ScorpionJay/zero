@@ -10,6 +10,8 @@ import Home from './containers/home/Home'
 import Find from './containers/find/Find'
 import Me from './containers/me/Me'
 import Account from './containers/me/Account'
+import Nickname from './containers/me/Nickname'
+import Sign from './containers/me/Sign'
 import Setting from './containers/me/Setting'
 import About from './containers/me/About'
 // import Post from './containers/post/Post'
@@ -40,7 +42,7 @@ class ZeroNavigator extends Component {
 
   _renderScene(route, navigator){
     const { dispatch } = this.props
-    dispatch(tab(route.id))
+    //spatch(tab(route.id))
     switch(route.id){
         case 'splash':
              return <Splash navigator={navigator} route={route}/>
@@ -67,6 +69,14 @@ class ZeroNavigator extends Component {
       case  'me':
             return <Me navigator={navigator} route={route}/>
             break;
+      case  'nickname':
+            return <Nickname navigator={navigator} route={route}/>
+            break;
+      case  'sign':
+            return <Sign navigator={navigator} route={route}/>
+            break;
+
+            
       // // me
       case  'find':
             return <Find navigator={navigator} route={route}/>
@@ -109,6 +119,7 @@ class ZeroNavigator extends Component {
     return (
         <Navigator
             initialRoute={{  id:'splash' }}
+           configureScene={(route, routeStack) => Navigator.SceneConfigs.HorizontalSwipeJump }
             renderScene={this._renderScene.bind(this)}
         />    
     );

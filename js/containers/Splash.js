@@ -43,7 +43,7 @@ class App extends Component {
   render() {
     return (
       <TouchableOpacity onPress={this.hanlder.bind(this)} style={styles.container} >
-        <Image source={{uri: 'http://odyv5xg88.bkt.clouddn.com/34.jpg'}} style={styles.img} />
+         <Image source={{uri: 'http://odyv5xg88.bkt.clouddn.com/34.jpg'}} style={styles.img} />
       </TouchableOpacity>
     );
   }
@@ -52,7 +52,7 @@ class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    backgroundColor:'#aaa'
+    backgroundColor:'#333'
   },
   img:{
     flex: 1,

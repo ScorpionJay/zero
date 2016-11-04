@@ -37,7 +37,8 @@ class Me extends Component {
     }else {
       this.props.navigator.push({
               id: 'account',
-              title: '个人信息'
+              title: '个人信息',
+             
         })
     }
   }
@@ -69,7 +70,7 @@ class Me extends Component {
     const { account } = this.props
     let name = '未登录'
     if(account){
-      name = account.name
+      name = account.nickname ? account.nickname : account.name
     }
     return (
       <View>
@@ -82,7 +83,9 @@ class Me extends Component {
               (<Image source={{uri: 'http://odyv5xg88.bkt.clouddn.com/34.jpg'}} style={styles.photo}/>) : (<Image source={require('../images/photo.jpg')} style={styles.photo}/>)
             }
             
-            <Text style={{marginLeft:20,fontSize:20}}>{name}</Text>
+            <View  style={{marginLeft:20}}>
+              <Text style={{fontSize:20}}>{name}</Text>
+            </View>
           </View>
           <Icon name="angle-right" size={22} color="#aaa" />
         </TouchableOpacity>
@@ -138,7 +141,9 @@ const styles = StyleSheet.create({
   photo:{
     width: 70,
     height:70,
-    borderRadius:60
+    borderRadius:60,
+    borderWidth:4,
+    borderColor:'#eee'
   }
 });
 

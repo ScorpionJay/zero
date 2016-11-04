@@ -7,7 +7,7 @@ export default {
   accountUrl: serviceUrl + 'admin/account',
   accountUrl2: serviceUrl + 'account/user',
   accountSignUrl: serviceUrl + 'account/sign',
-  fileUpload: serviceUrl + 'file/save',
+  
   fileUrl: serviceUrl + 'file/',
   postsUrl: serviceUrl + 'article/posts',
   postUrl: serviceUrl + 'article/post/',
@@ -29,6 +29,8 @@ export default {
   word:'WORD',
   picture:'PICTURE',
 
-  musicRecommendUrl: serviceUrl + 'music/data/see%20you%20agmain'
+  musicRecommendUrl: serviceUrl + 'music/data/see%20you%20agmain',
+  updateAccount: serviceUrl + 'admin/updateAccount',
+  fileUpload: serviceUrl + 'admin/photo/upload',
 
 };

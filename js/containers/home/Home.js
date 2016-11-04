@@ -22,12 +22,9 @@ var {width, height} = Dimensions.get('window');
 
 class App extends Component {
 
-
   constructor(props) {
     super(props);
-  
     this.state = {};
-    console.log(width,height);
   }
 
   componentDidMount(){
@@ -63,7 +60,7 @@ class App extends Component {
             }
 
 
-          return  <TouchableHighlight style={[s,styles.item]} onPress={ this.link.bind(this,item)}><Text style={{fontSize:16,color:'#fff'}}>{item.name}</Text></TouchableHighlight> 
+          return  <TouchableHighlight style={[s,styles.item]} key={item.name} onPress={ this.link.bind(this,item)}><Text style={{fontSize:16,color:'#fff'}}>{item.name}</Text></TouchableHighlight> 
           })
         }
         </View>

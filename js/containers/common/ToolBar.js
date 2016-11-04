@@ -36,6 +36,12 @@ export default class ToolBar extends Component {
                 <Text style= {styles.text}>{route.title}</Text>
               </View>
               <View style= {styles.tabRight}>
+                {
+                  this.props.rightEvent ? (<TouchableOpacity onPress={this.props.rightEvent} style= {styles.tabLeft}>
+                  <Text style= {styles.text}>完成</Text>
+                </TouchableOpacity>):null
+                }
+                
               </View>
           </View>
         )
@@ -77,7 +83,8 @@ const styles = StyleSheet.create({
   },
   tabRight: {
     flex:1,
-    justifyContent: 'center',
+    alignItems:'flex-end',
+    marginRight: 10
   },
   container2: {
     backgroundColor: '#238CFE',
