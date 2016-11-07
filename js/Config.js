@@ -34,6 +34,8 @@ export default {
   musicRecommendUrl: serviceUrl + 'music/data/see%20you%20agmain',
   updateAccount: serviceUrl + 'admin/updateAccount',
   fileUpload: serviceUrl + 'admin/photo/upload',
-  photo: serviceUrl + 'admin/file/'
+  photo: serviceUrl + 'admin/file/',
+  article: serviceUrl + 'home/apiData/',
+  articleDetail: serviceUrl + 'home/detail/'
 
 };

@@ -14,6 +14,9 @@ import Nickname from './containers/me/Nickname'
 import Sign from './containers/me/Sign'
 import Setting from './containers/me/Setting'
 import About from './containers/me/About'
+
+
+import Web from './containers/common/Web'
 // import Post from './containers/post/Post'
 // import Posts from './containers/post/Posts'
 // import DynamicDetial from './containers/post/DynamicDetial'
@@ -92,6 +95,9 @@ class ZeroNavigator extends Component {
             break;
       case  'setting':
             return <Setting navigator={navigator} route={route}/>
+            break;
+      case  'web':
+            return <Web navigator={navigator} route={route}/>
             break;
 
       // case  'post':

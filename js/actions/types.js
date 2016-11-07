@@ -40,3 +40,5 @@ export const ACCOUNT = 'ACCOUNT'
 export const MUSIC_RECOMMEND = 'MUSIC_RECOMMEND'
 export const MUSIC_SEARCH = 'MUSIC_SEARCH'
 
+export const ARTICLE = 'ARTICLE'
+

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   View,
   Text,
-  ScrollView
+  ScrollView,
+  TouchableOpacity,
+  ToastAndroid
 } from 'react-native';
 
 import ToolBar from '../common/ToolBar'
@@ -12,21 +13,43 @@ import ToolBar from '../common/ToolBar'
 // import ListCompontent from './ListCompontent'
 
 import { connect } from 'react-redux'
-import { fetchList,fetchListItem } from '../../actions/home'
+
+
+import { articleAPI } from '../../actions/article'
 
 class App extends Component {
 
   componentDidMount(){
     const { dispatch } = this.props
-    dispatch(fetchList())
+    dispatch(articleAPI())
   }
   
+  detail(id){
+    //ToastAndroid.show(id, ToastAndroid.SHORT)
+    this.props.navigator.push({
+       title:'详情',
+       id:'web',
+       params: {
+        id: id
+      }
+    })
+  }
+
   render() {
+    const { article } = this.props
     return (
       <View style={styles.container}>
         <ToolBar navigator={this.props.navigator} route={this.props.route}/>
-        <Text>todo</Text>
-
+        {
+          article.map((item) => {
+            return (
+                  <TouchableOpacity style={{ padding: 10 }}  onPress={ this.detail.bind(this,item._id)}>
+                    <Text style={{ fontSize: 18 ,color:'#666'}}>  {item.title}  </Text>
+                    <Text style={{ paddingLeft: 10,fontSize: 14 }}>{item.date}</Text>
+                  </TouchableOpacity>
+                  )
+          })
+        }
       </View>
     );
   }
@@ -41,7 +64,7 @@ const styles = StyleSheet.create({
 
 function map(state) {
   return {
-    data: state.home.fetchList
+    article: state.article.article
   }
 }
 
