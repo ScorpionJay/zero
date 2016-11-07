@@ -98,7 +98,7 @@ export function updateSignAPI(token,sign,accountData,goback){
     }
 }
 
-export function updatePhoto(token,photo,accountData){
+export function updatePhoto(token,photo,accountData,reflesh){
   console.log(photo)
     return dispatch => { 
       fetch(Config.fileUpload, {
@@ -111,27 +111,15 @@ export function updatePhoto(token,photo,accountData){
           }).then((data)=> data.json() )
             .then((jsonData) =>{
               console.log(jsonData)
-              // if(jsonData.code === 0){
-              //     this.setState({
-              //       avatarSource: Config.fileUrl + jsonData.data
-              //     });
-              //     ToastAndroid.show(jsonData.msg, ToastAndroid.SHORT)
-              // }else if(jsonData.status === 401){
-              //     // token过期 重新登录
-              //     ToastAndroid.show('帐号过期，重新登录', ToastAndroid.SHORT)
-              //     // 删除本地的
-              //     this.props.navigator.push({
-              //         id:'login',
-              //         title:'登录',
-              //         params: {
-              //           username: username
-              //         }
-              //       }
-              //     )
-              // }
-              // else{
-              //   ToastAndroid.show('上传失败', ToastAndroid.SHORT)
-              // }
+              if(jsonData.code === 0){
+                  accountData.photo =  jsonData.data
+                  reflesh(jsonData.data)
+                  dispatch(account(accountData))
+
+              }
+              else{
+                ToastAndroid.show('上传失败', ToastAndroid.SHORT)
+              }
             })
             .catch(function(ex) {
             console.log('parsing failed', ex)

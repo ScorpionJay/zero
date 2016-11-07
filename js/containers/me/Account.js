@@ -14,6 +14,7 @@ import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 import ImagePicker from 'react-native-image-picker';
+import Config from '../../Config'
 
 import { updateNicknameAPI,accountAPI,account,updatePhoto } from '../../actions/account'
 
@@ -43,6 +44,13 @@ const options = {
 
 class Account extends Component {
 
+  constructor(props) {
+    super(props);
+  
+    this.state = {
+      photo: this.props.account.photo ? Config.photo + this.props.account.photo : null
+    };
+  }
 
   updateNickname(){
     const { dispatch,login } = this.props
@@ -98,15 +106,19 @@ class Account extends Component {
           //data.append('file', response.uri)
           data.append('file', {uri: response.uri, name: "test", type: 'image/jpg'});
           
-          dispatch(updatePhoto(_this.props.login, data, _this.props.account  ))
+          dispatch(updatePhoto(_this.props.login, data, _this.props.account ,_this.reflesh.bind(_this) ))
         }
       });
   }
 
+  reflesh(data){
+    this.setState({photo:  Config.photo + data })
+  }
 
   render() {
     const { account } = this.props
-
+    // Config.photo + account.photo
+    // this.setState({photo: account.photo ? Config.photo + account.photo : null})
     return (
       <ScrollView> 
 
@@ -116,8 +128,8 @@ class Account extends Component {
             <Text style={ styles.ItemText }>头像</Text>  
             <View style={{ flex:1,flexDirection:'row',justifyContent:'flex-end',alignItems:'center' }}> 
               {
-                this.props.account ? 
-                (<Image source={{uri: 'http://odyv5xg88.bkt.clouddn.com/34.jpg'}} style={styles.photo}/>) : (<Image source={require('../images/photo.jpg')} style={styles.photo}/>)
+                this.state.photo ? 
+                (<Image source={{uri: this.state.photo}} style={styles.photo}/>) : (<Image source={require('../images/photo.jpg')} style={styles.photo}/>)
               }
               <Icon name="angle-right" size={22} color="#aaa" />
             </View>

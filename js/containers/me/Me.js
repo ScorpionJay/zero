@@ -14,6 +14,8 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import { connect } from 'react-redux'
 import { accountAPI } from '../../actions/account'
 
+import Config from '../../Config'
+
 class Me extends Component {
 
   componentDidMount(){
@@ -79,8 +81,8 @@ class Me extends Component {
         <TouchableOpacity  style={ [styles.account] } onPress={this.hanlder.bind(this)}>
           <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
             {
-              this.props.account ? 
-              (<Image source={{uri: 'http://odyv5xg88.bkt.clouddn.com/34.jpg'}} style={styles.photo}/>) : (<Image source={require('../images/photo.jpg')} style={styles.photo}/>)
+              this.props.account && this.props.account.photo ? 
+              (<Image source={{uri:  Config.photo + account.photo  }} style={styles.photo}/>) : (<Image source={require('../images/photo.jpg')} style={styles.photo}/>)
             }
             
             <View  style={{marginLeft:20}}>

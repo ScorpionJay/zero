@@ -1,4 +1,6 @@
-const serviceUrl = 'http://192.16.2.85:18080/'
+// const serviceUrl = 'http://192.16.2.138:18080/'
+
+const serviceUrl = 'http://scorpion.duapp.com/'
 
 export default {
   initTab:'home',
@@ -32,5 +34,6 @@ export default {
   musicRecommendUrl: serviceUrl + 'music/data/see%20you%20agmain',
   updateAccount: serviceUrl + 'admin/updateAccount',
   fileUpload: serviceUrl + 'admin/photo/upload',
+  photo: serviceUrl + 'admin/file/'
 
 };
