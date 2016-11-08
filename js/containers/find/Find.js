@@ -16,6 +16,7 @@ import { connect } from 'react-redux'
 
 
 import { articleAPI } from '../../actions/article'
+import Config from '../../Config'
 
 class App extends Component {
 
@@ -30,7 +31,7 @@ class App extends Component {
        title:'详情',
        id:'web',
        params: {
-        id: id
+        link: Config.articleDetail + id
       }
     })
   }

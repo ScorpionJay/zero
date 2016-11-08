@@ -12,6 +12,7 @@ import ToolBar from '../common/ToolBar'
 import HomeCarouse from './HomeCarouse'
 // import ListCompontent from './ListCompontent'
 
+import Config from '../../Config'
 
 import { connect } from 'react-redux'
 import { fetchList,fetchListItem } from '../../actions/home'
@@ -34,10 +35,28 @@ class App extends Component {
 
   link(obj){
     console.log(obj)
-    this.props.navigator.push({
-       title:obj.name,
-       id:obj.link
-    })
+    if(obj.link === 'football'){
+      this.props.navigator.push({
+       title:'足球',
+       id:'web',
+       params: {
+        link: Config.football
+      }
+      })
+    }else if(obj.link === 'chat'){
+      this.props.navigator.push({
+       title:'聊天室',
+       id:'web',
+       params: {
+        link: Config.chat
+      }
+      })
+    }else{
+      this.props.navigator.push({
+         title:obj.name,
+         id:obj.link
+      })
+    }
   }
   
   render() {

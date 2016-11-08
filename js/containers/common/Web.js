@@ -13,7 +13,6 @@ import ToolBar from '../common/ToolBar'
 import { connect } from 'react-redux'
 import { logoutAPI } from '../../actions/login'
 
-import Config from '../../Config'
 
 class Web extends Component {
 
@@ -22,7 +21,7 @@ class Web extends Component {
   }
  
   render() {
-    let url = Config.articleDetail + this.props.route.params.id
+    let url =  this.props.route.params.link
     return (
       <View style={styles.container}>
           <ToolBar navigator={this.props.navigator} route={this.props.route}/>

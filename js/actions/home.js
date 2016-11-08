@@ -31,7 +31,7 @@ export function fetchList(){
 	    		{name:'天气',color:'#2EC6B9',link:'weather'},
 	    		{name:'上海',color:'#EB453F',link:'shanghai'},
 	    		{name:'健身',color:'#ED8F39',link:'fitness'},
-	    		{name:'...',color:'#28B2F3',link:'music'}
+	    		{name:'聊天',color:'#28B2F3',link:'chat'}
 	    	]
 
 	     	dispatch(addTodo(json))

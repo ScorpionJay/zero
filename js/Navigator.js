@@ -45,7 +45,7 @@ class ZeroNavigator extends Component {
 
   _renderScene(route, navigator){
     const { dispatch } = this.props
-    //spatch(tab(route.id))
+    dispatch(tab(route.id))
     switch(route.id){
         case 'splash':
              return <Splash navigator={navigator} route={route}/>
@@ -124,7 +124,7 @@ class ZeroNavigator extends Component {
      // initialRoute={{  id: this.props.tab }}
     return (
         <Navigator
-            initialRoute={{  id:'splash' }}
+            initialRoute={{  id: 'splash' }}
            configureScene={(route, routeStack) => Navigator.SceneConfigs.HorizontalSwipeJump }
             renderScene={this._renderScene.bind(this)}
         />    

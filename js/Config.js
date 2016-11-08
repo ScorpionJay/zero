@@ -1,6 +1,6 @@
-// const serviceUrl = 'http://192.16.2.138:18080/'
+const serviceUrl = 'http://192.16.2.138:18080/'
 
-const serviceUrl = 'http://scorpion.duapp.com/'
+// const serviceUrl = 'http://scorpion.duapp.com/'
 
 export default {
   initTab:'home',
@@ -36,6 +36,8 @@ export default {
   fileUpload: serviceUrl + 'admin/photo/upload',
   photo: serviceUrl + 'admin/file/',
   article: serviceUrl + 'home/apiData/',
-  articleDetail: serviceUrl + 'home/detail/'
+  articleDetail: serviceUrl + 'home/detail/',
+  football: serviceUrl + 'football',
+  chat: serviceUrl + 'chat'
 
 };
